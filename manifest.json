@@ -1,0 +1,25 @@
+{
+	"name": "Multi-monitor window opener",
+	"description": "Use JavaScript function openNewWindow(url, { top, left, width, height }) to open new window by given position and dimension. Support multiple monitors setup.",
+	"version": "0.1",
+	"manifest_version": 2,
+	"permissions": [
+		"system.display",
+		"tabs",
+		"http://*/*",
+		"https://*/*"
+	],
+	"background": {
+		"scripts": ["background_main.js"],
+		"persistent": false
+	},
+	"content_scripts": [{
+		"matches": ["http://*/*", "https://*/*"],
+		"js": ["content.js"],
+		"all_frames": true,
+		"run_at": "document_start"
+	}],
+	"icons": {
+		"256": "img/icon.png"
+	}
+}
