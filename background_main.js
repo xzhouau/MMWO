@@ -8,14 +8,16 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 	var log_prefix = '#MMWO Chrome extension# ';
 
 	if (message && message.type == 'page') {
-		var page_request = message.request;
-		console.log(log_prefix + 'open new window at: ' + page_request);
-
 		chrome.system.display.getInfo(function(displayInfo) {
 			if (displayInfo.length > 1) {
-				console.log(log_prefix + "multi monitors detected: " + displayInfo);
+				console.log(log_prefix + "multiple monitors detected: ");
+				console.log(displayInfo);
 			}
 		});
+		
+		var page_request = message.request;
+		console.log(log_prefix + 'open new window at:');
+		console.log(page_request);
 
 		// Open new window by given parameters
 		chrome.windows.create({
